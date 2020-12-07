@@ -26,3 +26,5 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
 else
     echo -e "${GREEN}NOTE: pull_request so no image was built and pushed.${CLEAR}";
 fi
+
+#test comment
