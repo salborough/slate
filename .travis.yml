@@ -1,0 +1,28 @@
+language: ruby
+cache: bundler
+
+rvm:
+  - 2.5.3
+
+services:
+  - docker
+
+env:
+  global:
+    - secure: "ToH4l1OBcFsnwUAz8Q8bhrtTLGQUux8f3CWF50g4RPwC+zutsmZWIeWWOK3BiCqJ+S8ehxpympeTL6UmhHre17p2xrRYutnRl7x6RMxxBZ1her1LX0TXvmk1j38Jo09Gltv00yioV/N61BW9rsTN0tkSbgXEk4l7KEsXaHAWQso1Vi5uzPeiUGhxUQfFEcAIKov3Jk8s2uOJ2llH289eLl5o81vL129vjIs1oBdF8z5asV/XPwOoaNGy+wOK25zxdRmu1wHFQ2Ca47pvKQPC/iHYN3MXLU+7O4B+WOXyyCBRr1/SL0AFdwglKmV5jjfV6+Fu2ATxvgU5H3/RfWOSV1wKp8k3LCqyhzl5IVsbGTYppPzgW+QzPTcqxXIiHInBYD0VlwVp+7CjUD9ZlfPQY8rmtNZ8oj8sregBj03eAgrQUCmn7oO2oZSBFQF5SdKWMc6xGaq2NwNe+ioa0i8NNVez6B9HOd0aOCnChB9v/BryaSqp620AyRbE3TYNi6Jox+QH0j5292hYoLKL13n3FXtML1aTiws+duKX1UMGlkS/bjlWPniebsKM0BRGY7HAjX1xNKx7V9TKe+OkUBpG1+CHpH4gUK/pyzHr8V80LzLczvMurxMHRryLniadn2+K/qcfbMsPgcMqj4bYMi7K49tkcQaNBhw77m7AX/uvYms=" #DOCKER_USER
+    - secure: "GdHBllDycXLijUA2tcEm4GLgdBn+eeF8HviNQpE9+F/N5mQQFHmewfty2pbqy9RTWuZZq4B+/k+X/c+TofOrWaz8KHUhSniL5oq7SLh3yFDH4RRVIWaKqhylYZbmji2hgGpCY6dyFa8N68SmJDDDEzudbTQF0f6ZGs5f/2qujj70E8L6McK7uJUDtUcswKaYFWto1MlySDeQgvPbPZRrnABazK85IAyCMqQut6q/hoFwxm498N5cjNtCAQo54BRCy34GsyP7/eFVVxZp2/e6BVr0tKzM+7YI7cqe4fvlf7gVbnYoU7RyzhdFKkKWBugK+chdOlKbw9PqseXH1TROqehA8v2P4pJAVanuZhacGOIovHLdoh4ph2N3XJZoS/Dk1x82nEFCjEBeNRR9foCXqGMHuJx/kooguZRqBk42Uy+TGaP9AvDEuH44pfPQSnTFOmjxm900+yMesBLWDXd/jToloHAlpa5T6sl1+pr6MTNiK5D3xHjM50Z4p7vuReoCU/1/GUXdEBgAA1Z/CMbdVrTAm4u2lNnDb171cqzI+2jaz4Z4qZ0mhXPn1lNqSthGGJDnDinC+KOzvwvxfEFfmjhw6T7pU49OxfX1/TWMwscnMssWJXMrrhll+ySDeplaBIFkL+fFE9NilGUm7omvmjvDe9cv5XwzwGdCQ7lrJQY=" #DOCKER_PASS
+
+
+script: false
+
+jobs:
+  include:   
+    - stage: "Docker Build"
+      script: bash ./docker/docker_push.sh
+      name: "Deployment Builds"
+      install: skip
+      env:
+      - REPO=salborough/slate
+      - DOCKERFILE=./Dockerfile
+      - WD=./
+
